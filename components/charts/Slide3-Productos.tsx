@@ -4,11 +4,11 @@ import { useState, useEffect } from "react"
 import { Trophy, TrendingUp, TrendingDown, Star } from "lucide-react"
 
 const data = [
-  { rank: 1, producto: "Rodajitas Spicy Limón 30g", unidades: 5085, porcentaje: 25.3, trend: "-21.2%", isTop: false },
-  { rank: 2, producto: "Palomitas Classic White 25g", unidades: 4232, porcentaje: 21.0, trend: "+16.5%", isTop: true },
-  { rank: 3, producto: "Palomitas Street Elote 25g", unidades: 4003, porcentaje: 19.9, trend: "-3.2%", isTop: false },
-  { rank: 4, producto: "Chicharrón de Cerdo 75g", unidades: 3636, porcentaje: 18.1, trend: "+29.1%", isTop: true, isBest: true },
-  { rank: 5, producto: "Palomitas Street Elote 125g", unidades: 3061, porcentaje: 15.2, trend: "-0.9%", isTop: false },
+  { rank: 1, producto: "Rodajitas Spicy Limón 30g", unidades: 5085, importe: 139838, porcentaje: 25.3, trend: "-21.2%", isTop: false },
+  { rank: 2, producto: "Palomitas Classic White 25g", unidades: 4232, importe: 95220, porcentaje: 21.0, trend: "+16.5%", isTop: true },
+  { rank: 3, producto: "Palomitas Street Elote 25g", unidades: 4003, importe: 90068, porcentaje: 19.9, trend: "-3.2%", isTop: false },
+  { rank: 4, producto: "Chicharrón de Cerdo 75g", unidades: 3636, importe: 210888, porcentaje: 18.1, trend: "+29.1%", isTop: true, isBest: true },
+  { rank: 5, producto: "Palomitas Street Elote 125g", unidades: 3061, importe: 143867, porcentaje: 15.2, trend: "-0.9%", isTop: false },
 ]
 
 const COLORS = {
@@ -51,12 +51,20 @@ export default function Slide3Productos() {
           <p className="text-lg text-gray-500 mt-2">Top 5 Productos Sell-Out · <span className="text-[#F7B500] font-medium">Sep 2025 - Ene 2026</span></p>
         </div>
 
-        {/* Total badge */}
-        <div className="flex items-center gap-3 px-6 py-4 bg-[#1A1A1A] rounded-2xl transition-all duration-300 hover:scale-105 hover:shadow-xl cursor-pointer">
-          <Trophy size={28} className="text-[#F7B500]" />
-          <div>
-            <p className="text-3xl font-bold text-[#F7B500]">20,127</p>
-            <p className="text-xs text-gray-400">Unidades totales</p>
+        {/* Total badges */}
+        <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 px-4 py-3 bg-[#1A1A1A] rounded-2xl transition-all duration-300 hover:scale-105 hover:shadow-xl cursor-pointer">
+            <Trophy size={24} className="text-[#F7B500]" />
+            <div>
+              <p className="text-2xl font-bold text-[#F7B500]">20,127</p>
+              <p className="text-xs text-gray-400">Unidades</p>
+            </div>
+          </div>
+          <div className="flex items-center gap-2 px-4 py-3 bg-[#27AE60] rounded-2xl transition-all duration-300 hover:scale-105 hover:shadow-xl cursor-pointer">
+            <div>
+              <p className="text-2xl font-bold text-white">$682,355</p>
+              <p className="text-xs text-green-200">Importe Est.</p>
+            </div>
           </div>
         </div>
       </div>
@@ -73,10 +81,11 @@ export default function Slide3Productos() {
           >
             <span className="w-8 text-xs font-semibold text-gray-500">#</span>
             <span className="flex-1 text-xs font-semibold text-gray-500">PRODUCTO</span>
-            <span className="w-24 text-xs font-semibold text-gray-500 text-right">UNIDADES</span>
-            <span className="w-16 text-xs font-semibold text-gray-500 text-right">% MIX</span>
+            <span className="w-20 text-xs font-semibold text-gray-500 text-right">UNIDADES</span>
+            <span className="w-24 text-xs font-semibold text-gray-500 text-right">IMPORTE EST.</span>
+            <span className="w-14 text-xs font-semibold text-gray-500 text-right">% MIX</span>
             <span className="w-20 text-xs font-semibold text-gray-500 text-right">VS AÑO ANT</span>
-            <span className="w-40 text-xs font-semibold text-gray-500">DISTRIBUCIÓN</span>
+            <span className="w-32 text-xs font-semibold text-gray-500">DISTRIBUCIÓN</span>
           </div>
 
           {/* Data rows - animated */}
@@ -127,14 +136,19 @@ export default function Slide3Productos() {
               </div>
 
               {/* Units */}
-              <span className={`w-24 text-right font-bold transition-all duration-300 ${
+              <span className={`w-20 text-right font-bold transition-all duration-300 ${
                 item.isTop ? "text-[#27AE60]" : "text-[#1A1A1A]"
               } ${activeIndex === index ? "scale-110" : ""}`}>
                 {item.unidades.toLocaleString()}
               </span>
 
+              {/* Importe */}
+              <span className={`w-24 text-right font-bold transition-all duration-300 text-[#F7B500]`}>
+                ${item.importe.toLocaleString()}
+              </span>
+
               {/* Percentage */}
-              <span className={`w-16 text-right font-semibold text-gray-600`}>
+              <span className={`w-14 text-right font-semibold text-gray-600`}>
                 {item.porcentaje}%
               </span>
 
@@ -151,7 +165,7 @@ export default function Slide3Productos() {
               </span>
 
               {/* Bar - animated */}
-              <div className="w-40">
+              <div className="w-32">
                 <div className="w-full h-4 bg-gray-100 rounded-full overflow-hidden">
                   <div
                     className={`h-full rounded-full transition-all duration-700 ${
@@ -187,6 +201,7 @@ export default function Slide3Productos() {
               <span className="text-3xl font-bold text-[#27AE60]">+29.1%</span>
               <span className="text-sm text-green-700">vs año anterior</span>
             </div>
+            <p className="text-sm text-green-700 mt-2 font-medium">$210,888 importe est.</p>
           </div>
 
           {/* Second best card */}

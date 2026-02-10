@@ -4,16 +4,16 @@ import { useState, useEffect } from "react"
 import { MapPin, TrendingUp, TrendingDown, Crown, Target } from "lucide-react"
 
 const data = [
-  { rank: 1, plaza: "Monterrey Oriente", unidades: 3402, growth: -6.3, isTop: true },
-  { rank: 2, plaza: "Guadalajara", unidades: 1488, growth: 10.4, isGrowing: true },
-  { rank: 3, plaza: "Culiacán", unidades: 1065, growth: 6.4, isGrowing: true },
-  { rank: 4, plaza: "Hermosillo", unidades: 1052, growth: -11.4 },
-  { rank: 5, plaza: "Chihuahua", unidades: 1044, growth: -10.6 },
-  { rank: 6, plaza: "Cancún", unidades: 981, growth: 3.5, isGrowing: true },
-  { rank: 7, plaza: "Baja California Norte", unidades: 852, growth: 20.5, isGrowing: true, isHighGrowth: true },
-  { rank: 8, plaza: "Mérida", unidades: 727, growth: 38.5, isGrowing: true, isHighGrowth: true },
-  { rank: 9, plaza: "Mazatlán", unidades: 725, growth: -18.2 },
-  { rank: 10, plaza: "Monterrey Poniente", unidades: 541, growth: -16.1 },
+  { rank: 1, plaza: "Monterrey Oriente", unidades: 3402, importe: 107251, growth: -6.3, isTop: true },
+  { rank: 2, plaza: "Guadalajara", unidades: 1488, importe: 51495, growth: 10.4, isGrowing: true },
+  { rank: 3, plaza: "Culiacán", unidades: 1065, importe: 34977, growth: 6.4, isGrowing: true },
+  { rank: 4, plaza: "Hermosillo", unidades: 1052, importe: 35675, growth: -11.4 },
+  { rank: 5, plaza: "Chihuahua", unidades: 1044, importe: 39695, growth: -10.6 },
+  { rank: 6, plaza: "Cancún", unidades: 981, importe: 34772, growth: 3.5, isGrowing: true },
+  { rank: 7, plaza: "Baja California Norte", unidades: 852, importe: 29411, growth: 20.5, isGrowing: true, isHighGrowth: true },
+  { rank: 8, plaza: "Mérida", unidades: 727, importe: 23733, growth: 38.5, isGrowing: true, isHighGrowth: true },
+  { rank: 9, plaza: "Mazatlán", unidades: 725, importe: 24966, growth: -18.2 },
+  { rank: 10, plaza: "Monterrey Poniente", unidades: 541, importe: 17689, growth: -16.1 },
 ]
 
 const COLORS = {
@@ -139,6 +139,11 @@ export default function Slide4Plazas() {
                 </div>
               </div>
 
+              {/* Importe */}
+              <span className="w-20 text-right text-xs font-bold text-[#F7B500]">
+                ${item.importe.toLocaleString()}
+              </span>
+
               {/* Growth */}
               <span className={`w-20 text-right text-sm font-bold flex items-center justify-end gap-1 ${
                 item.growth > 0 ? "text-green-600" : "text-red-500"
@@ -172,6 +177,7 @@ export default function Slide4Plazas() {
               <span className="text-2xl font-bold text-[#F7B500]">3,402</span>
               <span className="text-sm text-amber-700">unidades</span>
             </div>
+            <p className="text-sm text-amber-700 mt-1 font-medium">$107,251 importe est.</p>
           </div>
 
           {/* Mayor crecimiento */}
@@ -190,6 +196,7 @@ export default function Slide4Plazas() {
               <span className="text-2xl font-bold text-[#27AE60]">+38.5%</span>
               <span className="text-sm text-green-700">vs año anterior</span>
             </div>
+            <p className="text-sm text-green-700 mt-1 font-medium">$23,733 importe est.</p>
           </div>
 
           {/* Oportunidad */}

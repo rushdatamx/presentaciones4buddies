@@ -4,11 +4,11 @@ import { useState, useEffect } from "react"
 import { TrendingUp, Rocket, Lightbulb, Target, Sparkles, ArrowRight } from "lucide-react"
 
 const topGrowth = [
-  { plaza: "Tabasco", growth: 117, units: 217, color: "#10B981" },
-  { plaza: "Mérida", growth: 38.5, units: 727, color: "#22C55E" },
-  { plaza: "Baja California Norte", growth: 20.5, units: 852, color: "#14B8A6" },
-  { plaza: "México Centro", growth: 13.0, units: 504, color: "#06B6D4" },
-  { plaza: "Guadalajara", growth: 10.4, units: 1488, color: "#3B82F6" },
+  { plaza: "Tabasco", growth: 117, units: 217, importe: 7769, color: "#10B981" },
+  { plaza: "Mérida", growth: 38.5, units: 727, importe: 23733, color: "#22C55E" },
+  { plaza: "Baja California Norte", growth: 20.5, units: 852, importe: 29411, color: "#14B8A6" },
+  { plaza: "México Centro", growth: 13.0, units: 504, importe: 18382, color: "#06B6D4" },
+  { plaza: "Guadalajara", growth: 10.4, units: 1488, importe: 51495, color: "#3B82F6" },
 ]
 
 const insights = [
@@ -89,9 +89,12 @@ export default function Slide5Oportunidades() {
                 {item.plaza}
               </div>
 
-              {/* Units */}
+              {/* Units & Importe */}
               <div className="text-xs text-gray-500">
                 {item.units.toLocaleString()} unidades
+              </div>
+              <div className="text-xs font-semibold text-[#F7B500] mt-1">
+                ${item.importe.toLocaleString()} est.
               </div>
 
               {/* Hover indicator */}

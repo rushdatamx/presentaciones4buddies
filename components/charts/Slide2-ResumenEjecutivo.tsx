@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Store, Package, TrendingUp, MapPin, Sparkles } from "lucide-react"
+import { Store, Package, TrendingUp, MapPin, Sparkles, DollarSign } from "lucide-react"
 
 // Hook para animacion count-up
 const useCountUp = (end: number, duration = 2000, startAnimation = false) => {
@@ -48,6 +48,7 @@ export default function Slide2ResumenEjecutivo() {
   const countSKUs = useCountUp(6, 800, isLoaded)
   const countUnidades = useCountUp(20127, 2000, isLoaded)
   const countPlazas = useCountUp(46, 1200, isLoaded)
+  const countImporte = useCountUp(682355, 2500, isLoaded)
 
   const kpis = [
     {
@@ -87,6 +88,16 @@ export default function Slide2ResumenEjecutivo() {
       borderColor: "border-orange-200",
       hoverBg: "hover:bg-orange-100",
     },
+    {
+      icon: DollarSign,
+      value: countImporte,
+      label: "Importe Estimado (MXN)",
+      color: "#F7B500",
+      bgColor: "bg-amber-50",
+      borderColor: "border-amber-300",
+      hoverBg: "hover:bg-amber-100",
+      isCurrency: true,
+    },
   ]
 
   return (
@@ -104,7 +115,7 @@ export default function Slide2ResumenEjecutivo() {
       </div>
 
       {/* KPIs Grid - animated */}
-      <div className="grid grid-cols-2 gap-6 flex-1">
+      <div className="grid grid-cols-3 gap-5 flex-1">
         {kpis.map((kpi, index) => {
           const Icon = kpi.icon
           const isHovered = hoveredIndex === index
@@ -112,7 +123,7 @@ export default function Slide2ResumenEjecutivo() {
           return (
             <div
               key={index}
-              className={`p-8 rounded-2xl border-2 cursor-pointer transition-all duration-300 ${
+              className={`p-6 rounded-2xl border-2 cursor-pointer transition-all duration-300 ${
                 isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               } ${kpi.bgColor} ${kpi.borderColor} ${kpi.hoverBg} ${
                 isHovered ? "scale-[1.02] shadow-xl" : "shadow-md"
@@ -123,7 +134,7 @@ export default function Slide2ResumenEjecutivo() {
             >
               {/* Icon */}
               <div
-                className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-6 transition-all duration-300 ${
+                className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-4 transition-all duration-300 ${
                   isHovered ? "scale-110" : ""
                 }`}
                 style={{ backgroundColor: `${kpi.color}20` }}
@@ -138,12 +149,12 @@ export default function Slide2ResumenEjecutivo() {
               {/* Value */}
               <div className="flex items-baseline gap-2">
                 <span
-                  className={`text-6xl font-bold transition-all duration-300 ${
+                  className={`text-5xl font-bold transition-all duration-300 ${
                     isHovered ? "scale-105" : ""
                   }`}
                   style={{ color: kpi.color }}
                 >
-                  {kpi.value.toLocaleString()}
+                  {kpi.isCurrency ? `$${kpi.value.toLocaleString()}` : kpi.value.toLocaleString()}
                 </span>
                 {kpi.highlight && (
                   <Sparkles
