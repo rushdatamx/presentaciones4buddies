@@ -172,6 +172,29 @@ export default function Slide4DiagnosticoRodajitas() {
                 </div>
               ))}
             </div>
+
+            {/* Nota de acciones puntuales */}
+            <div
+              className={`mt-4 p-4 bg-red-50 border-2 border-red-200 rounded-xl transition-all duration-700 ${
+                isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+              }`}
+              style={{ transitionDelay: "900ms" }}
+            >
+              <p className="text-sm text-red-800 font-semibold mb-2">
+                Acciones puntuales en plazas con caída:
+              </p>
+              <div className="flex flex-wrap gap-3">
+                <span className="px-3 py-1 bg-red-100 text-red-700 rounded-full text-xs font-medium">
+                  Revisión de Inventarios
+                </span>
+                <span className="px-3 py-1 bg-red-100 text-red-700 rounded-full text-xs font-medium">
+                  Planes Promocionales
+                </span>
+                <span className="px-3 py-1 bg-red-100 text-red-700 rounded-full text-xs font-medium">
+                  Capacitación virtual a líderes de plaza
+                </span>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -230,20 +253,9 @@ export default function Slide4DiagnosticoRodajitas() {
               <Target size={20} className="text-blue-600" />
               <span className="font-semibold text-blue-800">Recomendación</span>
             </div>
-            <ul className="text-sm text-blue-900 space-y-2">
-              <li className="flex items-start gap-2">
-                <span className="text-blue-500 mt-1">•</span>
-                <span>Revisar <span className="font-bold">disponibilidad</span> en plazas con mayor caída</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-blue-500 mt-1">•</span>
-                <span>Evaluar <span className="font-bold">exhibición</span> y visibilidad del producto</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-blue-500 mt-1">•</span>
-                <span>71 plazas = <span className="font-bold">oportunidad de recuperación</span></span>
-              </li>
-            </ul>
+            <p className="text-sm text-blue-900 leading-relaxed">
+              Revisar <span className="font-bold">inventarios</span> y complementar con <span className="font-bold">plan promocional 2x$</span>
+            </p>
           </div>
         </div>
       </div>
