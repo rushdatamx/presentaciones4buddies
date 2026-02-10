@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Store, Package, TrendingUp, MapPin, Sparkles, DollarSign } from "lucide-react"
+import { Store, TrendingUp, TrendingDown, MapPin, Sparkles, DollarSign } from "lucide-react"
 
 // Hook para animacion count-up
 const useCountUp = (end: number, duration = 2000, startAnimation = false) => {
@@ -45,8 +45,8 @@ export default function Slide2ResumenEjecutivo() {
 
   // Animaciones count-up
   const countSucursales = useCountUp(728, 1500, isLoaded)
-  const countSKUs = useCountUp(6, 800, isLoaded)
   const countUnidades = useCountUp(20127, 2000, isLoaded)
+  const countUnidadesAnterior = useCountUp(21107, 2000, isLoaded)
   const countPlazas = useCountUp(46, 1200, isLoaded)
   const countImporte = useCountUp(682355, 2500, isLoaded)
 
@@ -61,15 +61,6 @@ export default function Slide2ResumenEjecutivo() {
       hoverBg: "hover:bg-blue-100",
     },
     {
-      icon: Package,
-      value: countSKUs,
-      label: "SKUs en Anaquel",
-      color: "#8B5CF6",
-      bgColor: "bg-purple-50",
-      borderColor: "border-purple-200",
-      hoverBg: "hover:bg-purple-100",
-    },
-    {
       icon: TrendingUp,
       value: countUnidades,
       label: "Unidades Vendidas",
@@ -78,6 +69,10 @@ export default function Slide2ResumenEjecutivo() {
       borderColor: "border-green-200",
       hoverBg: "hover:bg-green-100",
       highlight: true,
+      comparison: {
+        previous: countUnidadesAnterior,
+        variation: -4.6,
+      },
     },
     {
       icon: MapPin,
@@ -115,7 +110,7 @@ export default function Slide2ResumenEjecutivo() {
       </div>
 
       {/* KPIs Grid - animated */}
-      <div className="grid grid-cols-3 gap-5 flex-1">
+      <div className="grid grid-cols-2 gap-5 flex-1">
         {kpis.map((kpi, index) => {
           const Icon = kpi.icon
           const isHovered = hoveredIndex === index
@@ -172,6 +167,34 @@ export default function Slide2ResumenEjecutivo() {
               >
                 {kpi.label}
               </p>
+
+              {/* Comparison vs previous year */}
+              {kpi.comparison && (
+                <div className="mt-4 pt-4 border-t border-gray-200">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-sm text-gray-500">Año Anterior</p>
+                      <p className="text-2xl font-bold text-gray-600">
+                        {kpi.comparison.previous.toLocaleString()}
+                      </p>
+                    </div>
+                    <div className={`flex items-center gap-1 px-3 py-2 rounded-xl ${
+                      kpi.comparison.variation < 0 ? "bg-red-100" : "bg-green-100"
+                    }`}>
+                      {kpi.comparison.variation < 0 ? (
+                        <TrendingDown size={20} className="text-red-600" />
+                      ) : (
+                        <TrendingUp size={20} className="text-green-600" />
+                      )}
+                      <span className={`text-xl font-bold ${
+                        kpi.comparison.variation < 0 ? "text-red-600" : "text-green-600"
+                      }`}>
+                        {kpi.comparison.variation > 0 ? "+" : ""}{kpi.comparison.variation}%
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
           )
         })}
