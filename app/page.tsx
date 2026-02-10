@@ -8,15 +8,19 @@ import { jsPDF } from "jspdf"
 import Slide1Portada from "@/components/charts/Slide1-Portada"
 import Slide2ResumenEjecutivo from "@/components/charts/Slide2-ResumenEjecutivo"
 import Slide3Productos from "@/components/charts/Slide3-Productos"
-import Slide4Plazas from "@/components/charts/Slide4-Plazas"
-import Slide5Oportunidades from "@/components/charts/Slide5-Oportunidades"
+import Slide4DiagnosticoRodajitas from "@/components/charts/Slide4-DiagnosticoRodajitas"
+import Slide5Plazas from "@/components/charts/Slide4-Plazas"
+import Slide6Oportunidades from "@/components/charts/Slide5-Oportunidades"
+import Slide7NuevosDesarrollos from "@/components/charts/Slide6-NuevosDesarrollos"
 
 const slides = [
   { id: 1, name: "Portada", component: Slide1Portada },
   { id: 2, name: "Resumen Ejecutivo", component: Slide2ResumenEjecutivo },
   { id: 3, name: "Productos", component: Slide3Productos },
-  { id: 4, name: "Top Plazas", component: Slide4Plazas },
-  { id: 5, name: "Oportunidades", component: Slide5Oportunidades },
+  { id: 4, name: "Diagnóstico Rodajitas", component: Slide4DiagnosticoRodajitas },
+  { id: 5, name: "Top Plazas", component: Slide5Plazas },
+  { id: 6, name: "Oportunidades", component: Slide6Oportunidades },
+  { id: 7, name: "Nuevos Desarrollos", component: Slide7NuevosDesarrollos },
 ]
 
 export default function Home() {
